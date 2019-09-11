@@ -19,8 +19,12 @@
 .interact {
   top: 375px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: auto;
+  cursor: pointer;
 }
 .displayText {
   border: 2px solid blue;
@@ -43,4 +47,27 @@
   height: 70px;
   right: 63px;
   bottom: 130px;
+}
+
+/* GENERATED POKEMON SELECTION */
+
+.pokemon {
+  /* border: 2px solid magenta; */
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  transition: 300ms;
+}
+.pokemon:hover {
+  transform: scale(1.1);
+  border: 1px solid gold;
+}
+.pokemonID {
+  width: 12%;
+  /* border: 2px solid red; */
+}
+.pokemonName {
+  /* border: 2px solid red; */
+  width: 80%;
+  text-transform: capitalize;
 }
