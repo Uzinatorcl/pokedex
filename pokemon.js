@@ -1,6 +1,7 @@
 class Pokemon {
-  constructor(name) {
+  constructor(name, image) {
     this.pokemonName = name;
+    this.pokemonImageAddress = image;
     this.domElements = {
       displayText : $('.displayText'),
       displayImage: $('.displayImage')
@@ -8,6 +9,9 @@ class Pokemon {
   }
   render() {
     //render the pokemon
+    console.log(this.pokemonName, this.pokemonImageAddress);
+    this.domElements.displayText.text(this.pokemonName);
+    this.domElements.displayImage.css('background-image', 'url(' + this.pokemonImageAddress + ')');
   }
 
 }

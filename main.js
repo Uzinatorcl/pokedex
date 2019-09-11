@@ -1,7 +1,8 @@
 $(document).ready(initializeApp)
 
-var pokemonDataSent = {};
 var pokemonDataRecieved = {};
+var pokemonToDisplay = {};
+var pokemonCurrentlyDisplayed = null;
 
 function initializeApp() {
 fetchPokemonFromServer();
@@ -13,14 +14,14 @@ function addEventListeners() {
 }
 
 function fetchPokemonFromServer() {
-  pokemonDataSent = {
+  var pokemonDataSent = {
     'url': "https://pokeapi.co/api/v2/pokemon/?limit=151",
-    success: pokemonRecievedSuccessfully
+    success: pokemonDataRecievedSuccessfully
   }
   $.ajax(pokemonDataSent)
 }
 
-function pokemonRecievedSuccessfully(data) {
+function pokemonDataRecievedSuccessfully(data) {
   pokemonDataRecieved = data;
 
   for(var pokeIndex = 0; pokeIndex < pokemonDataRecieved.results.length; pokeIndex++) {
@@ -37,5 +38,21 @@ function pokemonRecievedSuccessfully(data) {
 
 function displayPokemon(event) {
   var pokemonToRequestIndex = parseInt(event.currentTarget.firstChild.textContent) - 1
-  console.log(pokemonDataRecieved.results[pokemonToRequestIndex].url);
+  var pokemonToRequestURL = pokemonDataRecieved.results[pokemonToRequestIndex].url
+  console.log(pokemonToRequestURL);
+  var pokemonToRequest = {
+    'url' : pokemonToRequestURL,
+    success : createPokemon
+  };
+  $.ajax(pokemonToRequest);
+}
+
+function createPokemon(data) {
+  pokemonToDisplay = data;
+  var pokemonDisplayImageAddress = pokemonToDisplay.sprites.front_default
+  var pokemonDisplayName = pokemonToDisplay.name
+  console.log(pokemonDisplayName);
+  pokemonCurrentlyDisplayed = new Pokemon(pokemonDisplayName, pokemonDisplayImageAddress);
+  console.log(pokemonCurrentlyDisplayed);
+  pokemonCurrentlyDisplayed.render();
 }
