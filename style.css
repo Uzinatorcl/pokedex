@@ -9,7 +9,6 @@
 }
 .display, .interact {
   position: absolute;
-  border: 2px solid black;
   height: 200px;
   width: 250px;
   left: 284px;
@@ -19,28 +18,53 @@
 .interact {
   top: 375px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: auto;
+  cursor: pointer;
 }
 .displayText {
-  border: 2px solid blue;
   margin-top: 10px;
   padding: 5px 0 5px 0;
+  text-transform: capitalize;
 }
 .displayImage {
-  border: 2px solid blue;
   height: 150px;
   margin: auto 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .submit {
   text-align: center;
   position: absolute;
-  border: 2px solid green;
   width: 70px;
   height: 70px;
   right: 63px;
   bottom: 130px;
+}
+
+/* GENERATED POKEMON SELECTION */
+
+.pokemon {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  transition: 300ms;
+}
+.pokemon:hover {
+  transform: scale(1.1);
+  border: 1px solid gold;
+}
+.pokemonID {
+  width: 12%;
+}
+.pokemonName {
+  width: 80%;
+  text-transform: capitalize;
 }
