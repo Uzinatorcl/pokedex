@@ -1,0 +1,37 @@
+.pokedex {
+  background-image: url('images/pokedex.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+  width: 835px;
+  height: 635px;
+  position: relative;
+}
+.display, .interact {
+  position: absolute;
+  border: 2px solid black;
+  height: 200px;
+  width: 250px;
+  left: 284px;
+  top: 50px;
+  text-align: center;
+}
+.interact {
+  top: 375px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.displayText {
+  border: 2px solid blue;
+  margin-top: 10px;
+  padding: 5px 0 5px 0;
+}
+.displayImage {
+  border: 2px solid blue;
+  height: 150px;
+  margin: auto 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
