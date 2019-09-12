@@ -144,5 +144,5 @@ function scrollToNextPokemon(scrollDirection) {
   console.log(scrollPosition);
   $('.interact').animate({
     scrollTop: scrollPosition + 'px'
-  }, 200)
+  }, 150)
 }
