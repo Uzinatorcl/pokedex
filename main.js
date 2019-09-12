@@ -59,6 +59,18 @@ function displayPokemon(event) {
   };
   $.ajax(pokemonToRequest);
 }
+function displayPokemonViaSubmit() {
+  loadingScreen();
+  var pokemonToRequestIndex = parseInt($('.currentSelection')[0].firstChild.textContent)-1;
+  var pokemonToRequestURL = pokemonDataRecieved.results[pokemonToRequestIndex].url
+  console.log(pokemonToRequestURL);
+  var pokemonToRequest = {
+    'url': pokemonToRequestURL,
+    success: createPokemon,
+    error: serverError
+  };
+  $.ajax(pokemonToRequest);
+}
 
 function createPokemon(data) {
   pokemonToDisplay = data;
@@ -79,34 +91,41 @@ function serverError() {
 }
 
 function buttonPressed(event) {
-  switch(event.keyCode) {
-    case 40:
-      downButtonPressed();
-    break;
-    case 38:
-      upButtonPressed();
-    break;
-    case 37:
-      leftButtonPressed();
-      break;
-    case 39:
-      rightButtonPressed();
-      break;
-    case 13:
-      submitButtonPressed();
-    break;
-    default:
-      return;
+  var controls = {
+    40 : downButtonPressed,
+    38 : upButtonPressed,
+    37 : leftButtonPressed,
+    39 : rightButtonPressed,
+    13 : submitButtonPressed
   }
+  if(controls.hasOwnProperty(event.keyCode)) {
+    var control = controls[event.keyCode]
+    control();
+  }
+
 }
 
 function upButtonPressed() {
-  console.log('up button pressed');
+  var previousSelection = $('.currentSelection').prev()
+  if (previousSelection[0] === undefined) {
+    return;
+  }
+  console.log(previousSelection[0]);
+  $('.currentSelection').removeClass('currentSelection');
+  previousSelection.addClass('currentSelection');
+  //previousSelection[0].scrollIntoView();
+  scrollToNextPokemon(-13);
 }
 function downButtonPressed() {
   var nextSelection = $('.currentSelection').next()
+  if(nextSelection[0] === undefined) {
+    return;
+  }
+  console.log(nextSelection[0]);
   $('.currentSelection').removeClass('currentSelection');
   nextSelection.addClass('currentSelection');
+  //nextSelection[0].scrollIntoView();
+  scrollToNextPokemon(13);
 }
 function leftButtonPressed() {
   console.log('left button pressed');
@@ -116,4 +135,13 @@ function rightButtonPressed() {
 }
 function submitButtonPressed() {
   console.log('submit button pressed');
+  displayPokemonViaSubmit();
+}
+
+function scrollToNextPokemon(scrollDirection) {
+  var scrollPosition = $('.interact').scrollTop()
+  console.log(scrollPosition);
+  $('.interact').animate({
+    scrollTop: scrollDirection + scrollPosition + 'px'
+  }, 200)
 }
