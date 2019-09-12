@@ -85,8 +85,9 @@ function createPokemon(data) {
 }
 
 function loadingScreen() {
-  $('.displayImage').css('background-image', "url('images/loading2.gif')");
-  $('.displayText').text('Loading...')
+  $('.displayImage, .basicInformationDisplay, .baseStatsDisplay, .summaryDisplay')
+  .css('background-image', "url('images/loading2.gif')").empty();
+  $('.displayText, .basicInformationTitle, .baseStatsTitle, .summaryTitle ').text('Loading...');
 }
 function serverError() {
   $('.displayImage').css('background-image', "url('images/server-error.png')");
