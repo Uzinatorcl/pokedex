@@ -16,7 +16,8 @@ function addEventListeners() {
 function fetchPokemonFromServer() {
   var pokemonDataSent = {
     'url': "https://pokeapi.co/api/v2/pokemon/?limit=151",
-    success: pokemonDataRecievedSuccessfully
+    success: pokemonDataRecievedSuccessfully,
+    error: serverError
   }
   $.ajax(pokemonDataSent)
 }
@@ -37,12 +38,14 @@ function pokemonDataRecievedSuccessfully(data) {
 }
 
 function displayPokemon(event) {
+  loadingScreen();
   var pokemonToRequestIndex = parseInt(event.currentTarget.firstChild.textContent) - 1
   var pokemonToRequestURL = pokemonDataRecieved.results[pokemonToRequestIndex].url
   console.log(pokemonToRequestURL);
   var pokemonToRequest = {
     'url' : pokemonToRequestURL,
-    success : createPokemon
+    success : createPokemon,
+    error: serverError
   };
   $.ajax(pokemonToRequest);
 }
@@ -55,4 +58,12 @@ function createPokemon(data) {
   pokemonCurrentlyDisplayed = new Pokemon(pokemonDisplayName, pokemonDisplayImageAddress);
   console.log(pokemonCurrentlyDisplayed);
   pokemonCurrentlyDisplayed.render();
+}
+
+function loadingScreen() {
+  $('.displayImage').css('background-image', "url('images/loading2.gif')");
+  $('.displayText').text('Loading...')
+}
+function serverError() {
+  $('.displayImage').css('background-image', "url('images/server-error.png')");
 }
