@@ -3,6 +3,7 @@ $(document).ready(initializeApp)
 var pokemonDataRecieved = {};
 var pokemonToDisplay = {};
 var pokemonCurrentlyDisplayed = null;
+var currentlySelectedPokemon = $('.currentSelection');
 
 function initializeApp() {
 fetchPokemonFromServer();
@@ -11,6 +12,12 @@ addEventListeners();
 
 function addEventListeners() {
   $('body').on('click', '.pokemon', displayPokemon);
+  $('body').on('click', '.upButton', upButtonPressed);
+  $('body').on('click', '.downButton', downButtonPressed);
+  $('body').on('click', '.leftButton', leftButtonPressed);
+  $('body').on('click', '.rightButton', rightButtonPressed);
+  $('body').on('click', '.submit', submitButtonPressed);
+  $(document).on('keydown', buttonPressed);
 }
 
 function fetchPokemonFromServer() {
@@ -28,6 +35,9 @@ function pokemonDataRecievedSuccessfully(data) {
   for(var pokeIndex = 0; pokeIndex < pokemonDataRecieved.results.length; pokeIndex++) {
     var pokeID = "" + (pokeIndex + 1);
     var pokemonContainer = $('<div>').addClass('pokemon ' + pokemonDataRecieved.results[pokeIndex].name);
+    if (pokeIndex === 0) {
+      pokemonContainer.addClass('currentSelection');
+    }
     var pokemonID = $('<div>').addClass('pokemonID').text(pokeID);
    //debugger;
     var pokemonName = $('<div>').addClass('pokemonName').text(pokemonDataRecieved.results[pokeIndex].name);
@@ -66,4 +76,42 @@ function loadingScreen() {
 }
 function serverError() {
   $('.displayImage').css('background-image', "url('images/server-error.png')");
+}
+
+function buttonPressed(event) {
+  switch(event.keyCode) {
+    case 40:
+      downButtonPressed();
+    break;
+    case 38:
+      upButtonPressed();
+    break;
+    case 37:
+      leftButtonPressed();
+      break;
+    case 39:
+      rightButtonPressed();
+      break;
+    case 13:
+      submitButtonPressed();
+    break;
+    default:
+      return;
+  }
+}
+
+function upButtonPressed() {
+  console.log('up button pressed');
+}
+function downButtonPressed() {
+  console.log('down button pressed');
+}
+function leftButtonPressed() {
+  console.log('left button pressed');
+}
+function rightButtonPressed() {
+  console.log('right button pressed');
+}
+function submitButtonPressed() {
+  console.log('submit button pressed');
 }
