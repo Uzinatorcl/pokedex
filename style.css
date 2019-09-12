@@ -9,7 +9,7 @@
   height: 635px;
   position: relative;
 }
-.display, .interact {
+.overallDisplay, .interact {
   position: absolute;
   height: 200px;
   width: 250px;
@@ -17,6 +17,28 @@
   top: 50px;
   text-align: center;
 }
+.overallDisplay {
+    overflow: auto;
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+}
+.overallDisplayFlexContainer {
+  display: flex;
+  width: 1000px;
+}
+ .basicInformation, .baseStats, .summary, .display {
+  height: 200px;
+  width: 250px;
+ }
+/* .basicInformation {
+  left: 538px;
+}
+.baseStats {
+  left: 792px;
+}
+.summary {
+  left: 1046px;
+} */
 .interact {
   top: 375px;
   display: flex;
@@ -29,7 +51,7 @@
   -ms-overflow-style: none;
   cursor: pointer;
 }
-.interact::-webkit-scrollbar {
+.interact::-webkit-scrollbar, .overallDisplay::-webkit-scrollbar {
    width: 0 !important
   }
 .displayText {
