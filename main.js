@@ -4,6 +4,7 @@ var pokemonDataRecieved = {};
 var pokemonToDisplay = {};
 var pokemonCurrentlyDisplayed = null;
 var currentlySelectedPokemon = $('.currentSelection');
+var scrollPosition = 0
 
 function initializeApp() {
 fetchPokemonFromServer();
@@ -114,7 +115,7 @@ function upButtonPressed() {
   $('.currentSelection').removeClass('currentSelection');
   previousSelection.addClass('currentSelection');
   //previousSelection[0].scrollIntoView();
-  scrollToNextPokemon(-13);
+  scrollToNextPokemon(-12.8);
 }
 function downButtonPressed() {
   var nextSelection = $('.currentSelection').next()
@@ -125,7 +126,7 @@ function downButtonPressed() {
   $('.currentSelection').removeClass('currentSelection');
   nextSelection.addClass('currentSelection');
   //nextSelection[0].scrollIntoView();
-  scrollToNextPokemon(13);
+  scrollToNextPokemon(12.8);
 }
 function leftButtonPressed() {
   console.log('left button pressed');
@@ -139,9 +140,9 @@ function submitButtonPressed() {
 }
 
 function scrollToNextPokemon(scrollDirection) {
-  var scrollPosition = $('.interact').scrollTop()
+  scrollPosition += scrollDirection;
   console.log(scrollPosition);
   $('.interact').animate({
-    scrollTop: scrollDirection + scrollPosition + 'px'
+    scrollTop: scrollPosition + 'px'
   }, 200)
 }
