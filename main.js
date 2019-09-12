@@ -104,7 +104,9 @@ function upButtonPressed() {
   console.log('up button pressed');
 }
 function downButtonPressed() {
-  console.log('down button pressed');
+  var nextSelection = $('.currentSelection').next()
+  $('.currentSelection').removeClass('currentSelection');
+  nextSelection.addClass('currentSelection');
 }
 function leftButtonPressed() {
   console.log('left button pressed');
