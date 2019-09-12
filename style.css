@@ -9,6 +9,11 @@
   height: 635px;
   position: relative;
 }
+.onLoadInfo {
+  flex-wrap: wrap;
+  margin: 0 auto;
+  color: white;
+}
 .overallDisplay, .interact {
   position: absolute;
   height: 200px;
@@ -54,15 +59,16 @@
 .interact::-webkit-scrollbar, .overallDisplay::-webkit-scrollbar {
    width: 0 !important
   }
-.displayText {
+.displayText, .basicInformationTitle, .baseStatsTitle, .summaryTitle{
   margin-top: 10px;
   padding: 5px 0 5px 0;
   text-transform: capitalize;
   color: whitesmoke;
 }
-.displayImage {
+.displayImage, .basicInformationDisplay, .baseStatsDisplay, .summaryDisplay {
   height: 150px;
   margin: auto 0;
+  flex-wrap: wrap;
   display: flex;
   justify-content: center;
   align-items: center;
