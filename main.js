@@ -2,6 +2,7 @@ $(document).ready(initializeApp)
 
 var pokemonDataRecieved = {};
 var pokemonToDisplay = {};
+var pokemonTypeInformation = null;
 var pokemonCurrentlyDisplayed = null;
 var currentlySelectedPokemon = $('.currentSelection');
 var scrollPosition = 0;
@@ -73,15 +74,17 @@ function displayPokemonViaSubmit() {
   };
   $.ajax(pokemonToRequest);
 }
-
 function createPokemon(data) {
   pokemonToDisplay = data;
-  var pokemonDisplayImageAddress = pokemonToDisplay.sprites.front_default
-  var pokemonDisplayName = pokemonToDisplay.name
-  console.log(pokemonDisplayName);
-  pokemonCurrentlyDisplayed = new Pokemon(pokemonDisplayName, pokemonDisplayImageAddress);
-  console.log(pokemonCurrentlyDisplayed);
+  var pokemonDisplayImageAddress = pokemonToDisplay.sprites.front_default;
+  var pokemonDisplayName = pokemonToDisplay.name;
+  var pokemonTypes = pokemonToDisplay.types;
+  var pokemonDexNumber = pokemonToDisplay.id;
+  var pokemonSpeciesUrl = pokemonToDisplay.species.url
+  var pokemonAbilityList = pokemonToDisplay.abilities
+  pokemonCurrentlyDisplayed = new Pokemon(pokemonDisplayName, pokemonDisplayImageAddress, pokemonTypes, pokemonDexNumber, pokemonSpeciesUrl, pokemonAbilityList);
   pokemonCurrentlyDisplayed.render();
+
 }
 
 function loadingScreen() {
@@ -90,7 +93,7 @@ function loadingScreen() {
   $('.displayText, .basicInformationTitle, .baseStatsTitle, .summaryTitle ').text('Loading...');
 }
 function serverError() {
-  $('.displayImage').css('background-image', "url('images/server-error.png')");
+  $('.displayImage, .basicInformationDisplay, .baseStatsDisplay, .summaryDisplay').css('background-image', "url('images/server-error.png')");
 }
 
 function buttonPressed(event) {
@@ -113,7 +116,6 @@ function upButtonPressed() {
   if (previousSelection[0] === undefined) {
     return;
   }
-  console.log(previousSelection[0]);
   $('.currentSelection').removeClass('currentSelection');
   previousSelection.addClass('currentSelection');
   //previousSelection[0].scrollIntoView();
@@ -124,14 +126,12 @@ function downButtonPressed() {
   if(nextSelection[0] === undefined) {
     return;
   }
-  console.log(nextSelection[0]);
   $('.currentSelection').removeClass('currentSelection');
   nextSelection.addClass('currentSelection');
   //nextSelection[0].scrollIntoView();
   scrollToNextPokemon(12.8);
 }
 function leftButtonPressed() {
-  console.log('left button pressed');
   if (displayScrollPositon === 0) {
     return;
   }
@@ -144,13 +144,11 @@ function rightButtonPressed() {
   scrollToNextDisplay(250);
 }
 function submitButtonPressed() {
-  console.log('submit button pressed');
   displayPokemonViaSubmit();
 }
 
 function scrollToNextPokemon(scrollDirection) {
   scrollPosition += scrollDirection;
-  console.log(scrollPosition);
   $('.interact').animate({
     scrollTop: scrollPosition + 'px'
   }, 150)
@@ -158,7 +156,6 @@ function scrollToNextPokemon(scrollDirection) {
 
 function scrollToNextDisplay(scrollDirection) {
   displayScrollPositon += scrollDirection;
-  console.log(displayScrollPositon)
   $('.overallDisplay').animate({
     scrollLeft: displayScrollPositon + 'px'
   }, 150)
