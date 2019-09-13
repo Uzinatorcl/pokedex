@@ -54,7 +54,6 @@ function displayPokemon(event) {
   loadingScreen();
   var pokemonToRequestIndex = parseInt(event.currentTarget.firstChild.textContent) - 1
   var pokemonToRequestURL = pokemonDataRecieved.results[pokemonToRequestIndex].url
-  console.log(pokemonToRequestURL);
   var pokemonToRequest = {
     'url' : pokemonToRequestURL,
     success : createPokemon,
@@ -66,7 +65,6 @@ function displayPokemonViaSubmit() {
   loadingScreen();
   var pokemonToRequestIndex = parseInt($('.currentSelection')[0].firstChild.textContent)-1;
   var pokemonToRequestURL = pokemonDataRecieved.results[pokemonToRequestIndex].url
-  console.log(pokemonToRequestURL);
   var pokemonToRequest = {
     'url': pokemonToRequestURL,
     success: createPokemon,
@@ -76,14 +74,14 @@ function displayPokemonViaSubmit() {
 }
 function createPokemon(data) {
   pokemonToDisplay = data;
-  console.log(pokemonToDisplay);
   var pokemonDisplayImageAddress = pokemonToDisplay.sprites.front_default;
   var pokemonDisplayName = pokemonToDisplay.name;
   var pokemonTypes = pokemonToDisplay.types;
   var pokemonDexNumber = pokemonToDisplay.id;
   var pokemonSpeciesUrl = pokemonToDisplay.species.url
   var pokemonAbilityList = pokemonToDisplay.abilities
-  pokemonCurrentlyDisplayed = new Pokemon(pokemonDisplayName, pokemonDisplayImageAddress, pokemonTypes, pokemonDexNumber, pokemonSpeciesUrl, pokemonAbilityList);
+  var pokemonStats = pokemonToDisplay.stats;
+  pokemonCurrentlyDisplayed = new Pokemon(pokemonDisplayName, pokemonDisplayImageAddress, pokemonTypes, pokemonDexNumber, pokemonSpeciesUrl, pokemonAbilityList, pokemonStats);
   pokemonCurrentlyDisplayed.render();
 
 }

@@ -163,6 +163,22 @@
    text-transform: capitalize;
  }
 
+
+/* BASE STATS CSS */
+.baseStatsTable > * {
+  border: 2px solid magenta;
+  border-radius: 20px;
+  width: 96%;
+  margin-top: 2px;
+  text-align:  left;
+  color: white;
+  background-color: red;
+  padding: 2px;
+}
+
+
+
+
 /* GENERATED POKEMON SELECTION */
 
 .pokemon {
