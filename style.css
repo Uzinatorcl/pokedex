@@ -78,7 +78,7 @@
   background-position: center;
 }
 
- .basicInformationDisplay, .baseStats, .summary {
+ .basicInformationDisplay, .baseStatsDisplay, .summaryDisplay {
    margin-top: 8px;
    background-size: contain;
   background-repeat: no-repeat;
@@ -176,7 +176,14 @@
   padding: 2px;
 }
 
-
+.summaryInfo {
+  border: 2px solid black;
+  background-color: white;
+  border-radius: 20px;
+  font-size: 85%;
+  padding: 5px;
+  height: 133px;
+}
 
 
 /* GENERATED POKEMON SELECTION */

@@ -69,6 +69,13 @@ class Pokemon {
     }
     this.domElements.baseStatsDisplay.append(statsTable);
     this.domElements.baseStatsDisplay.css('background-image', '');
+    this.renderFourthPage();
+  }
+  renderFourthPage() {
+    this.domElements.summaryTitle.text('Summary');
+    var summaryInfo = $('<div>').addClass('summaryInfo').text(this.summaryInfo);
+    this.domElements.summaryDisplay.append(summaryInfo);
+    this.domElements.summaryDisplay.css('background-image', '');
   }
   getPokemonSpeciesInfo() {
     var speciesRequest = {
