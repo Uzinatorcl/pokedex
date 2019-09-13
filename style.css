@@ -12,6 +12,7 @@
 .onLoadInfo {
   flex-wrap: wrap;
   margin: 0 auto;
+  font-size: 80%;
   color: white;
 }
 .overallDisplay, .interact {
