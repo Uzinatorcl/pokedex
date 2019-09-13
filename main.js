@@ -115,6 +115,7 @@ function upButtonPressed() {
   if (previousSelection[0] === undefined) {
     return;
   }
+  responsiveButton('upButton');
   $('.currentSelection').removeClass('currentSelection');
   previousSelection.addClass('currentSelection');
   //previousSelection[0].scrollIntoView();
@@ -125,6 +126,7 @@ function downButtonPressed() {
   if(nextSelection[0] === undefined) {
     return;
   }
+  responsiveButton('downButton');
   $('.currentSelection').removeClass('currentSelection');
   nextSelection.addClass('currentSelection');
   //nextSelection[0].scrollIntoView();
@@ -134,17 +136,28 @@ function leftButtonPressed() {
   if (displayScrollPositon === 0) {
     return;
   }
+  responsiveButton('leftButton');
   scrollToNextDisplay(-250)
 }
 function rightButtonPressed() {
   if(displayScrollPositon === 750) {
     return;
   }
+  responsiveButton('rightButton');
   scrollToNextDisplay(250);
 }
 function submitButtonPressed() {
+  responsiveButton('submit');
   displayPokemonViaSubmit();
 }
+
+function responsiveButton(target) {
+  $('.' + target).css('opacity', .4);
+  setTimeout(function () {
+    $('.' + target).css('opacity', .0);
+  }, 150);
+}
+
 
 function scrollToNextPokemon(scrollDirection) {
   scrollPosition += scrollDirection;
