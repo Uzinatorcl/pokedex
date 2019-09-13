@@ -30,7 +30,6 @@ class Pokemon {
   }
 
   renderSecondPage() {
-    this.domElements.basicInformationDisplay.css('background-image', '');
     this.domElements.basicInformationTitle.text('Details');
     var nationalDexNumber = $('<div>').addClass('nationalDexNumber').text('National Dex: ').append('<span>' + this.pokedexNumber + '</span>');
     var typeArea = $('<div>').addClass('typeArea');
@@ -46,6 +45,7 @@ class Pokemon {
       abilityList.append(newAbilitySpan);
     }
     this.domElements.basicInformationDisplay.append(nationalDexNumber, typeArea, species, abilitiesTitle, abilityList);
+    this.domElements.basicInformationDisplay.css('background-image', '');
     // this.domElements.basicInformationDisplay
   }
   getPokemonSpeciesInfo() {

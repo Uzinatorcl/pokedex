@@ -78,7 +78,7 @@
   background-position: center;
 }
 
- .basicInformationDisplay, .baseStatsDisplay, .summaryDisplay {
+ .basicInformationDisplay, .baseStats, .summary {
    margin-top: 20px;
    background-size: contain;
   background-repeat: no-repeat;
