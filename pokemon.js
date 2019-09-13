@@ -10,6 +10,7 @@ class Pokemon {
     this.domElements = {
       displayText : $('.displayText'),
       displayImage: $('.displayImage'),
+      basicInformation: $('.basicInformation'),
       basicInformationTitle: $('.basicInformationTitle'),
       basicInformationDisplay: $('.basicInformationDisplay'),
       baseStatsTitle: $('.baseStatsTitle'),
@@ -25,9 +26,27 @@ class Pokemon {
     this.domElements.displayText.text(this.pokemonName);
     this.domElements.displayImage.css('background-image', 'url(' + this.pokemonImageAddress + ')');
     //render second page
-    console.log(this.abilities);
-    //LEFT OFF HERE ON ABILITIES
     this.getPokemonSpeciesInfo();
+  }
+
+  renderSecondPage() {
+    this.domElements.basicInformationDisplay.css('background-image', '');
+    this.domElements.basicInformationTitle.text('Details');
+    var nationalDexNumber = $('<div>').addClass('nationalDexNumber').text('National Dex: ').append('<span>' + this.pokedexNumber + '</span>');
+    var typeArea = $('<div>').addClass('typeArea');
+      for(var typeIndex = 0; typeIndex < this.pokemonTypes.length; typeIndex++) {
+        var newTypeSpan = $('<span>').addClass('type ' + this.pokemonTypes[typeIndex]).text(this.pokemonTypes[typeIndex]);
+        typeArea.append(newTypeSpan);
+      }
+    var species = $('<div>').addClass('species').text(this.species);
+    var abilitiesTitle = $('<div>').addClass('abilitiesTitle').text('Abilities');
+    var abilityList = $('<div>').addClass('abilities');
+    for (var abilityIndex = 0; abilityIndex < this.abilities.length; abilityIndex++) {
+      var newAbilitySpan = $('<span>').text(this.abilities[abilityIndex] + ' ');
+      abilityList.append(newAbilitySpan);
+    }
+    this.domElements.basicInformationDisplay.append(nationalDexNumber, typeArea, species, abilitiesTitle, abilityList);
+    // this.domElements.basicInformationDisplay
   }
   getPokemonSpeciesInfo() {
     var speciesRequest = {
@@ -46,6 +65,10 @@ class Pokemon {
       return ability.ability.name
     })
     console.log(this.abilities);
+    //got types
+    this.pokemonTypes = this.pokemonTypes.map(function (types) {
+      return types.type.name;
+    })
     //got summary
     if (englishCheck.test(data.flavor_text_entries[1].flavor_text)) {
       this.summaryInfo = data.flavor_text_entries[1].flavor_text
@@ -59,6 +82,7 @@ class Pokemon {
       }
       console.log(this.summaryInfo);
     }
+    this.renderSecondPage();
   }
 
 }

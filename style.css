@@ -79,6 +79,9 @@
 
  .basicInformationDisplay, .baseStatsDisplay, .summaryDisplay {
    margin-top: 20px;
+   background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
  }
  .basicInformationDisplay > * {
    margin: 5px 0 5px 0;
