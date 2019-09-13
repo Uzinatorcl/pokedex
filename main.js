@@ -25,7 +25,7 @@ function addEventListeners() {
 
 function fetchPokemonFromServer() {
   var pokemonDataSent = {
-    'url': "https://pokeapi.co/api/v2/pokemon/?limit=151",
+    'url': "https://pokeapi.co/api/v2/pokemon/?limit=802",
     success: pokemonDataRecievedSuccessfully,
     error: serverError
   }
@@ -76,6 +76,7 @@ function displayPokemonViaSubmit() {
 }
 function createPokemon(data) {
   pokemonToDisplay = data;
+  console.log(pokemonToDisplay);
   var pokemonDisplayImageAddress = pokemonToDisplay.sprites.front_default;
   var pokemonDisplayName = pokemonToDisplay.name;
   var pokemonTypes = pokemonToDisplay.types;

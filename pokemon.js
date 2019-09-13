@@ -6,6 +6,7 @@ class Pokemon {
     this.pokedexNumber = pokedexNumber;//number
     this.species = species;//api url first, then information
     this.abilities = abilities; //array of obj first then array
+    this.region = null; //null first then url string then just string
     this.summaryInfo = null;//null first, then string
     this.domElements = {
       displayText : $('.displayText'),
@@ -30,7 +31,7 @@ class Pokemon {
   }
 
   renderSecondPage() {
-    this.domElements.basicInformationTitle.text('Details');
+    this.domElements.basicInformationTitle.text(this.region);
     var nationalDexNumber = $('<div>').addClass('nationalDexNumber').text('National Dex: ').append('<span>' + this.pokedexNumber + '</span>');
     var typeArea = $('<div>').addClass('typeArea');
       for(var typeIndex = 0; typeIndex < this.pokemonTypes.length; typeIndex++) {
@@ -58,8 +59,8 @@ class Pokemon {
   gotPokemonSpeciesInfo(data) {
     var englishCheck = /^[A-Za-z0-9\s.!,?’é]*$/
     //got species list
-    this.species = data.genera[2].genus
-
+    this.species = data.genera[2].genus;
+    console.log(data);
     //got abilities list
     this.abilities = this.abilities.map(function (ability) {
       return ability.ability.name
@@ -69,6 +70,24 @@ class Pokemon {
     this.pokemonTypes = this.pokemonTypes.map(function (types) {
       return types.type.name;
     })
+    //got region name
+    this.region = data.generation.name;
+    console.log(this.region);
+    var regionConversion = {
+      'generation-i': 'Kanto Region',
+      'generation-ii': 'Johto Region',
+      'generation-iii': 'Hoenn Region',
+      'generation-iv': 'Sinnoh Region',
+      'generation-v': 'Unova Region',
+      'generation-vi': 'Kalos Region',
+      'generation-vii' : 'Alola Region',
+      'generation-viii' : 'Galar Region'
+    }
+    if (regionConversion.hasOwnProperty(this.region)) {
+      this.region = regionConversion[this.region];
+    }
+    console.log(this.region);
+
     //got summary
     if (englishCheck.test(data.flavor_text_entries[1].flavor_text)) {
       this.summaryInfo = data.flavor_text_entries[1].flavor_text

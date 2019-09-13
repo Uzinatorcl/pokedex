@@ -79,7 +79,7 @@
 }
 
  .basicInformationDisplay, .baseStats, .summary {
-   margin-top: 20px;
+   margin-top: 8px;
    background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
