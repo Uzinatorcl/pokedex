@@ -26,6 +26,7 @@ class Pokemon {
     this.domElements.displayImage.css('background-image', 'url(' + this.pokemonImageAddress + ')');
     //render second page
     console.log(this.abilities);
+    //LEFT OFF HERE ON ABILITIES
     this.getPokemonSpeciesInfo();
   }
   getPokemonSpeciesInfo() {
@@ -39,6 +40,12 @@ class Pokemon {
     var englishCheck = /^[A-Za-z0-9\s.!,?’é]*$/
     //got species list
     this.species = data.genera[2].genus
+
+    //got abilities list
+    this.abilities = this.abilities.map(function (ability) {
+      return ability.ability.name
+    })
+    console.log(this.abilities);
     //got summary
     if (englishCheck.test(data.flavor_text_entries[1].flavor_text)) {
       this.summaryInfo = data.flavor_text_entries[1].flavor_text
