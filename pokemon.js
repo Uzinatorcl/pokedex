@@ -115,7 +115,6 @@ class Pokemon {
     //got summary
     if (englishCheck.test(data.flavor_text_entries[1].flavor_text)) {
       this.summaryInfo = data.flavor_text_entries[1].flavor_text
-      console.log(this.summaryInfo);
     } else {
       for (var summaryIndex = 0; summaryIndex < data.flavor_text_entries.length; summaryIndex++) {
         if (englishCheck.test(data.flavor_text_entries[summaryIndex].flavor_text)) {
@@ -123,18 +122,15 @@ class Pokemon {
           break;
         }
       }
-      console.log(this.summaryInfo);
     }
     this.renderSecondPage();
   }
   convertStatsData() {
-    console.log(this.stats);
     for (var statIndex = 0; statIndex < this.stats.length; statIndex++) {
       var statName = this.stats[statIndex].stat.name
       var statValue = this.stats[statIndex].base_stat
       this.convertedStatList[statName] = statValue;
     }
-    console.log(this.convertedStatList);
     this.renderThirdPage();
   }
 }
