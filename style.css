@@ -251,3 +251,25 @@
   bottom: 125px;
   left: 154px;
 }
+
+.lightUp {
+  width: 18px;
+  height: 8px;
+  border: 2px solid lime;
+  position: absolute;
+  left: 8px;
+  bottom: 168px;
+  box-shadow: inset 0px 0px 40px 40px lime;
+  border-radius: 2px;
+  opacity: 0;
+  animation: lightUpOnDataAccess 1s infinite;
+}
+
+@keyframes lightUpOnDataAccess {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+.hidden {
+  display: none;
+}
