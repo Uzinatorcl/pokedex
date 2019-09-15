@@ -10,6 +10,7 @@ var displayScrollPositon = 0;
 var audio = new Audio;
 
 function initializeApp() {
+  audio.volume = 0;
 fetchPokemonFromServer();
 addEventListeners();
 }
@@ -21,6 +22,7 @@ function addEventListeners() {
   $('body').on('click', '.leftButton', leftButtonPressed);
   $('body').on('click', '.rightButton', rightButtonPressed);
   $('body').on('click', '.submit', submitButtonPressed);
+  $('body').on('click', '.soundButton', adjustVolume);
   $(document).on('keydown', buttonPressed);
 }
 
@@ -190,4 +192,8 @@ function scrollToNextDisplay(scrollDirection) {
 function sounds(fileName) {
   audio.src = 'audio/' + fileName + '.mp3';
   audio.play();
+}
+function adjustVolume(event) {
+  var newAudioValue = event.target.value/100
+  audio.volume = newAudioValue;
 }
