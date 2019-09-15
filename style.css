@@ -262,7 +262,7 @@
   box-shadow: inset 0px 0px 40px 40px lime;
   border-radius: 2px;
   opacity: 0;
-  animation: lightUpOnDataAccess 1s infinite;
+  animation: lightUpOnDataAccess 500ms infinite;
 }
 
 @keyframes lightUpOnDataAccess {
@@ -272,4 +272,12 @@
 
 .hidden {
   display: none;
+}
+
+.soundButton {
+  position: absolute;
+  right: 160px;
+  bottom: 130px;
+  transform: rotateZ(-90deg);
+  border: 2px solid blue;
 }

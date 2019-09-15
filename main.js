@@ -7,6 +7,7 @@ var pokemonCurrentlyDisplayed = null;
 var currentlySelectedPokemon = $('.currentSelection');
 var scrollPosition = 0;
 var displayScrollPositon = 0;
+var audio = new Audio;
 
 function initializeApp() {
 fetchPokemonFromServer();
@@ -73,6 +74,7 @@ function displayPokemonViaSubmit() {
   $.ajax(pokemonToRequest);
 }
 function createPokemon(data) {
+  lightUpResponsive();
   pokemonToDisplay = data;
   var pokemonDisplayImageAddress = pokemonToDisplay.sprites.front_default;
   var pokemonDisplayName = pokemonToDisplay.name;
@@ -83,7 +85,6 @@ function createPokemon(data) {
   var pokemonStats = pokemonToDisplay.stats;
   pokemonCurrentlyDisplayed = new Pokemon(pokemonDisplayName, pokemonDisplayImageAddress, pokemonTypes, pokemonDexNumber, pokemonSpeciesUrl, pokemonAbilityList, pokemonStats);
   pokemonCurrentlyDisplayed.render();
-
 }
 
 function loadingScreen() {
@@ -113,6 +114,7 @@ function buttonPressed(event) {
 function upButtonPressed() {
   var previousSelection = $('.currentSelection').prev()
   if (previousSelection[0] === undefined) {
+    sounds('cantMove');
     return;
   }
   responsiveButton('upButton');
@@ -124,6 +126,7 @@ function upButtonPressed() {
 function downButtonPressed() {
   var nextSelection = $('.currentSelection').next()
   if(nextSelection[0] === undefined) {
+    sounds('cantMove');
     return;
   }
   responsiveButton('downButton');
@@ -134,19 +137,24 @@ function downButtonPressed() {
 }
 function leftButtonPressed() {
   if (displayScrollPositon === 0) {
+    sounds('cantMove');
     return;
   }
+  sounds('swipe');
   responsiveButton('leftButton');
   scrollToNextDisplay(-250)
 }
 function rightButtonPressed() {
   if(displayScrollPositon === 750) {
+    sounds('cantMove');
     return;
   }
+  sounds('swipe');
   responsiveButton('rightButton');
   scrollToNextDisplay(250);
 }
 function submitButtonPressed() {
+  sounds('selected');
   responsiveButton('submit');
   displayPokemonViaSubmit();
 }
@@ -156,6 +164,13 @@ function responsiveButton(target) {
   setTimeout(function () {
     $('.' + target).css('opacity', .0);
   }, 150);
+}
+
+function lightUpResponsive() {
+  $('.lightUp').toggleClass('hidden');
+  setTimeout(function () {
+    $('.lightUp').toggleClass('hidden');
+  }, 500);
 }
 
 
@@ -171,4 +186,8 @@ function scrollToNextDisplay(scrollDirection) {
   $('.overallDisplay').animate({
     scrollLeft: displayScrollPositon + 'px'
   }, 150)
+}
+function sounds(fileName) {
+  audio.src = 'audio/' + fileName + '.mp3';
+  audio.play();
 }
