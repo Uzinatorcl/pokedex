@@ -224,6 +224,8 @@
   border-radius: 100px;
   background-color: darkgreen;
   opacity: 0;
+  pointer-events: all;
+  z-index: 10;
 }
 .leftButton, .rightButton, .upButton, .downButton {
   text-align: center;
@@ -235,6 +237,8 @@
   background-color: black;
   opacity: 0;
   border-radius: 20px;
+  pointer-events: all;
+  z-index: 10;
 }
 .leftButton {
   left: 124px;
