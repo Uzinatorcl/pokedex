@@ -247,12 +247,12 @@
   left: 185px;
 }
 .upButton {
-  transform: rotateZ(90deg);
-    bottom: 184px;
+  transform: rotate3d(0, 0 ,1, 90deg);
+  bottom: 184px;
   left: 154px;
 }
 .downButton {
-  transform: rotateZ(-90deg);
+  transform: rotate3d(0, 0 ,1, -90deg);
   bottom: 125px;
   left: 154px;
 }
