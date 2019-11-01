@@ -25,7 +25,7 @@
   text-align: center;
 }
 .overallDisplay {
-    overflow: auto;
+    overflow-y: auto;
   overflow: -moz-scrollbars-none;
   -ms-overflow-style: none;
 }
@@ -48,7 +48,6 @@
 } */
 .interact {
   top: 375px;
-  display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
