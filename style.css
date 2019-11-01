@@ -55,6 +55,7 @@
   box-sizing: border-box;
   overflow: auto;
   overflow: -moz-scrollbars-none;
+  -webkit-overflow-scrolling: touch;
   -ms-overflow-style: none;
   cursor: pointer;
 }
