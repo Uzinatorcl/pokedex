@@ -2,9 +2,7 @@ $(document).ready(initializeApp)
 
 var pokemonDataRecieved = {};
 var pokemonToDisplay = {};
-var pokemonTypeInformation = null;
 var pokemonCurrentlyDisplayed = null;
-var currentlySelectedPokemon = $('.currentSelection');
 var scrollPosition = 0;
 var displayScrollPositon = 0;
 var audio = new Audio;
