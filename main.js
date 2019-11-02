@@ -45,7 +45,6 @@ function pokemonDataRecievedSuccessfully(data) {
       pokemonContainer.addClass('currentSelection');
     }
     var pokemonID = $('<div>').addClass('pokemonID').text(pokeID);
-   //debugger;
     var pokemonName = $('<div>').addClass('pokemonName').text(pokemonDataRecieved.results[pokeIndex].name);
     pokemonContainer.append(pokemonID, pokemonName);
     $('.interact').append(pokemonContainer);
@@ -122,7 +121,6 @@ function upButtonPressed() {
   responsiveButton('upButton');
   $('.currentSelection').removeClass('currentSelection');
   previousSelection.addClass('currentSelection');
-  //previousSelection[0].scrollIntoView();
   scrollToNextPokemon(-12.8);
 }
 function downButtonPressed() {
@@ -134,7 +132,6 @@ function downButtonPressed() {
   responsiveButton('downButton');
   $('.currentSelection').removeClass('currentSelection');
   nextSelection.addClass('currentSelection');
-  //nextSelection[0].scrollIntoView();
   scrollToNextPokemon(12.8);
 }
 function leftButtonPressed() {

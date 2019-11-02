@@ -1,15 +1,15 @@
 class Pokemon {
   constructor(name, image, types, pokedexNumber, species, abilities, stats) {
-    this.pokemonName = name;//string
-    this.pokemonImageAddress = image;//string url
-    this.pokemonTypes = types;//array of types
-    this.pokedexNumber = pokedexNumber;//number
-    this.species = species;//api url first, then information
-    this.abilities = abilities; //array of obj first then array
-    this.stats = stats //array of objects
-    this.convertedStatList = {}//converts stats data into readable object
-    this.region = null; //null first then url string then just string
-    this.summaryInfo = null;//null first, then string
+    this.pokemonName = name;
+    this.pokemonImageAddress = image;
+    this.pokemonTypes = types;
+    this.pokedexNumber = pokedexNumber;
+    this.species = species;
+    this.abilities = abilities;
+    this.stats = stats
+    this.convertedStatList = {}
+    this.region = null;
+    this.summaryInfo = null;
     this.domElements = {
       displayText: $('.displayText'),
       displayImage: $('.displayImage'),
@@ -24,11 +24,8 @@ class Pokemon {
     this.gotPokemonSpeciesInfo = this.gotPokemonSpeciesInfo.bind(this);
   }
   render() {
-    //render the pokemon
-    //render first page
     this.domElements.displayText.text(this.pokemonName);
     this.domElements.displayImage.css('background-image', 'url(' + this.pokemonImageAddress + ')');
-    //render second page
     this.getPokemonSpeciesInfo();
   }
 
@@ -86,17 +83,13 @@ class Pokemon {
   }
   gotPokemonSpeciesInfo(data) {
     var englishCheck = /^[A-Za-z0-9\s.!,?’é]*$/
-    //got species list
     this.species = data.genera[2].genus;
-    //got abilities list
     this.abilities = this.abilities.map(function (ability) {
       return ability.ability.name
     })
-    //got types
     this.pokemonTypes = this.pokemonTypes.map(function (types) {
       return types.type.name;
     })
-    //got region name
     this.region = data.generation.name;
     var regionConversion = {
       'generation-i': 'Kanto Region',
@@ -112,7 +105,6 @@ class Pokemon {
       this.region = regionConversion[this.region];
     }
 
-    //got summary
     if (englishCheck.test(data.flavor_text_entries[1].flavor_text)) {
       this.summaryInfo = data.flavor_text_entries[1].flavor_text
     } else {
