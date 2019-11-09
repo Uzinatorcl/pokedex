@@ -1,6 +1,7 @@
 body {
   touch-action: manipulation;
   user-select: none;
+  overflow-y: hidden;
 }
 .container {
   height: 100vh;
