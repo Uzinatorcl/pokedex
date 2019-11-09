@@ -55,7 +55,6 @@ function displayPokemon(event) {
   $('.currentSelection').removeClass('currentSelection');
   $(event.currentTarget).addClass('currentSelection');
   scrollPosition = $('.interact').scrollTop() + $(event.currentTarget).position().top
-  $('.interact').scrollTop(scrollPosition);
   var pokemonToRequestIndex = parseInt(event.currentTarget.firstChild.textContent) - 1
   var pokemonToRequestURL = pokemonDataRecieved.results[pokemonToRequestIndex].url
   var pokemonToRequest = {
